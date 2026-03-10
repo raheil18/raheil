@@ -26,7 +26,7 @@
   --sp3:  24px;
   --sp4:  32px;
   --sp5:  48px;
-  --sp6:  72px;
+  --sp6:  48px;
 
   --r:    12px;
   --edge: 52px;
@@ -57,17 +57,7 @@ body{
 /* ═══════════════════════════════════════
    NAV
 ═══════════════════════════════════════ */
-nav{
-  position:fixed;top:3px;left:0;right:0;z-index:100;
-  display:flex;justify-content:space-between;align-items:center;
-  padding:16px var(--edge);
-  background:rgba(250,250,248,0.93);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--border);
-}
-.nav-brand{font-family:'DM Serif Display',serif;font-size:16px;letter-spacing:-0.2px;}
-.nav-r{display:flex;align-items:center;gap:var(--sp2);}
-.nav-tag{font-size:11px;color:var(--grey);letter-spacing:0.08em;text-transform:uppercase;}
+/* nav removed — replaced by .mast */
 
 /* ═══════════════════════════════════════
    BADGE
@@ -105,11 +95,8 @@ nav{
 ═══════════════════════════════════════ */
 section{
   border-bottom:1px solid var(--border);
-  padding:var(--sp6) 0;
-  opacity:0;transform:translateY(16px);
-  transition:opacity .6s ease,transform .6s ease;
+  padding:var(--sp5) 0;
 }
-section.vis{opacity:1;transform:translateY(0);}
 section.sec-dark{background:var(--ink);}
 
 .wrap{
@@ -374,94 +361,69 @@ section.sec-dark{background:var(--ink);}
 .csrc{font-size:10px;color:var(--grey);margin-top:4px;font-style:italic;opacity:.7;}
 
 /* ═══════════════════════════════════════
-   TITLE BAR
+   MASTHEAD — replaces nav + hero + title bar
 ═══════════════════════════════════════ */
-.title-bar{
+.mast{
   background:var(--ink);
-  padding:10px var(--edge);
-  display:flex;align-items:center;justify-content:space-between;
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
-.tb-left{display:flex;align-items:center;gap:var(--sp3);}
-.tb-label{
-  font-size:10px;font-weight:500;letter-spacing:.18em;
-  text-transform:uppercase;color:rgba(255,255,255,.35);
-}
-.tb-sep{width:1px;height:14px;background:rgba(255,255,255,.12);}
-.tb-title{
-  font-family:'DM Serif Display',serif;
-  font-size:14px;color:rgba(255,255,255,.7);letter-spacing:-.2px;
-}
-.tb-right{font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.07em;text-transform:uppercase;}
-
-/* ═══════════════════════════════════════
-   HERO
-═══════════════════════════════════════ */
-.hero{
-  min-height:auto;
-  display:flex;flex-direction:column;justify-content:center;
-  padding:var(--sp6) 0 var(--sp5);
-  padding-top:calc(var(--sp6) + 54px); /* offset for fixed nav */
-  border-bottom:1px solid var(--border);
+  padding:var(--sp4) var(--edge) var(--sp5);
   position:relative;overflow:hidden;
+  border-bottom:1px solid rgba(255,255,255,.07);
 }
-.hero-glow{
-  position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse 45% 60% at 88% 50%,var(--green-tint) 0%,transparent 55%);
-  opacity:.5;
+.mast-top{
+  max-width:var(--max);margin:0 auto;
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:var(--sp5);
 }
-.hero-court{
-  position:absolute;right:3%;bottom:-40px;
-  opacity:.045;pointer-events:none;
-  /* clip to bottom-right so it never bleeds into empty space */
-  clip-path:inset(20% 0 0 20%);
-}
-.hero-inner{
-  max-width:var(--max);margin:0 auto;padding:0 var(--edge);
-  display:grid;grid-template-columns:58fr 42fr;gap:var(--gap);align-items:center;
-}
-.hero-l{position:relative;z-index:1;}
-.hero-r{position:relative;z-index:1;}
-
-.h-eye{
-  display:flex;align-items:center;gap:var(--sp2);margin-bottom:var(--sp4);
-  opacity:0;animation:fadeUp .5s ease forwards .1s;
-}
-.h-eye-label{font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--grey);}
-.h-intro{
-  max-width:580px;margin-bottom:var(--sp3);
-  opacity:0;animation:fadeUp .5s ease forwards .25s;
-}
-.h-intro p{font-size:14px;color:var(--grey);line-height:1.75;font-weight:300;}
-.h1{
+.mast-brand{
   font-family:'DM Serif Display',serif;
-  font-size:clamp(40px,5.2vw,76px);
-  line-height:1.04;letter-spacing:-2px;
-  opacity:0;animation:fadeUp .65s ease forwards .4s;
+  font-size:15px;color:rgba(255,255,255,.55);letter-spacing:-.1px;
 }
-.h1 em{font-style:italic;color:var(--green);}
-.h-sub{
-  font-size:15px;color:var(--grey);max-width:480px;
-  margin-top:var(--sp3);font-weight:300;line-height:1.75;
-  opacity:0;animation:fadeUp .65s ease forwards .55s;
+.mast-r{display:flex;align-items:center;gap:var(--sp2);}
+.mast-tag{font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.12em;text-transform:uppercase;}
+
+.mast-body{
+  max-width:var(--max);margin:0 auto;
+  display:grid;grid-template-columns:1fr auto;gap:var(--gap);align-items:end;
+}
+.mast-hl{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(36px,4.8vw,68px);
+  line-height:1.04;letter-spacing:-2px;color:#fff;
+  opacity:0;animation:fadeUp .6s ease forwards .15s;
+}
+.mast-hl em{font-style:italic;color:var(--green);}
+.mast-sub{
+  font-size:14px;color:rgba(255,255,255,.42);
+  max-width:520px;margin-top:var(--sp2);
+  font-weight:300;line-height:1.75;
+  opacity:0;animation:fadeUp .6s ease forwards .3s;
+}
+.mast-court{
+  position:absolute;right:0;top:0;bottom:0;
+  opacity:.04;pointer-events:none;
+  display:flex;align-items:center;
 }
 
-/* Hero right: KPI panel */
-.h-kpis{
-  background:var(--grey-light);border:1px solid var(--border);
-  border-radius:var(--r);overflow:hidden;
-  opacity:0;animation:fadeUp .65s ease forwards .65s;
-}
-.h-kpi{
-  padding:var(--sp3) var(--sp4);
+/* KPI strip below masthead */
+.kpi-strip{
+  background:var(--grey-light);
   border-bottom:1px solid var(--border);
 }
-.h-kpi:last-child{border-bottom:none;}
-.h-kn{
-  font-family:'DM Serif Display',serif;
-  font-size:36px;letter-spacing:-1px;line-height:1;color:var(--green);
+.kpi-inner{
+  max-width:var(--max);margin:0 auto;
+  padding:0 var(--edge);
+  display:grid;grid-template-columns:repeat(4,1fr);
 }
-.h-kl{font-size:12px;color:var(--grey);margin-top:5px;font-weight:400;line-height:1.4;}
+.kpi-cell{
+  padding:var(--sp3) var(--sp4);
+  border-right:1px solid var(--border);
+}
+.kpi-cell:last-child{border-right:none;}
+.kn{
+  font-family:'DM Serif Display',serif;
+  font-size:30px;letter-spacing:-1px;line-height:1;color:var(--green);
+}
+.kl{font-size:12px;color:var(--grey);margin-top:5px;font-weight:400;line-height:1.4;}
 
 /* ═══════════════════════════════════════
    TICKER STRIP
@@ -501,84 +463,67 @@ footer{
 ═══════════════════════════════════════ */
 @media(max-width:860px){
   :root{--edge:24px;--gap:28px;}
-  .cols,.cols-wide,.hero-inner{grid-template-columns:1fr;}
+  .cols,.cols-wide{grid-template-columns:1fr;}
   .g3,.g2{grid-template-columns:1fr;}
-  .hero-kpis{grid-template-columns:1fr 1fr;}
-  .h-kpis{margin-top:var(--sp4);}
+  .kpi-inner{grid-template-columns:1fr 1fr;}
+  .kpi-cell{border-right:none;border-bottom:1px solid var(--border);}
   .fn-row{grid-template-columns:1fr;}
   footer{flex-direction:column;gap:var(--sp2);}
   .f-note{text-align:center;}
-  .hero-court{display:none;}
+  .mast-court{display:none;}
+  .mast-body{grid-template-columns:1fr;}
 }
 
 </style>
 </head>
 <body>
 
-<div id="progress"></div>
-
-<!-- NAV -->
-<nav>
-  <div class="nav-brand">Raheil, Case Study</div>
-  <div class="nav-r">
-    <span class="nav-tag">KW Padel · 2025–26</span>
-    <span class="badge"><span class="bdot"></span>Live</span>
+<!-- ══════════════════════════ MASTHEAD -->
+<div class="mast">
+  <div class="mast-court">
+    <svg width="260" height="420" viewBox="0 0 200 330" fill="none">
+      <rect x="8" y="8" width="184" height="314" stroke="#00c27a" stroke-width="1.5"/>
+      <line x1="8" y1="165" x2="192" y2="165" stroke="#00c27a" stroke-width="2.5"/>
+      <line x1="8" y1="100" x2="192" y2="100" stroke="#00c27a" stroke-width="1"/>
+      <line x1="8" y1="230" x2="192" y2="230" stroke="#00c27a" stroke-width="1"/>
+      <line x1="100" y1="8" x2="100" y2="100" stroke="#00c27a" stroke-width="1"/>
+      <line x1="100" y1="230" x2="100" y2="322" stroke="#00c27a" stroke-width="1"/>
+      <circle cx="100" cy="165" r="3" fill="#00c27a"/>
+    </svg>
   </div>
-</nav>
-
-<!-- TITLE BAR -->
-<div class="title-bar">
-  <div class="tb-left">
-    <span class="tb-label">Case Study</span>
-    <div class="tb-sep"></div>
-    <span class="tb-title">I found an underserved segment. Then I built the product.</span>
+  <div class="mast-top">
+    <div class="mast-brand">A case study in identifying a gap in the market</div>
+    <div class="mast-r">
+      <span class="mast-tag">Wealthsimple Accelerators 2026</span>
+      <span class="badge"><span class="bdot"></span>Live</span>
+    </div>
   </div>
-  <span class="tb-right">Wealthsimple Accelerators 2026</span>
+  <div class="mast-body">
+    <div>
+      <h1 class="mast-hl">The data showed a gap.<br><em>I built the product to fill it.</em></h1>
+      <p class="mast-sub">A case study in finding an underserved segment, diagnosing it with data, and building an access product from scratch. 8 weeks. No budget.</p>
+    </div>
+  </div>
 </div>
 
-<!-- ══════════════════════════ HERO -->
-<div class="hero">
-  <div class="hero-glow"></div>
-  <!-- Court SVG background -->
-  <svg class="hero-court" width="320" height="520" viewBox="0 0 200 330" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="8" y="8" width="184" height="314" stroke="#00c27a" stroke-width="1.5"/>
-    <line x1="8" y1="165" x2="192" y2="165" stroke="#00c27a" stroke-width="2.5"/>
-    <line x1="8" y1="100" x2="192" y2="100" stroke="#00c27a" stroke-width="1"/>
-    <line x1="8" y1="230" x2="192" y2="230" stroke="#00c27a" stroke-width="1"/>
-    <line x1="100" y1="8" x2="100" y2="100" stroke="#00c27a" stroke-width="1"/>
-    <line x1="100" y1="230" x2="100" y2="322" stroke="#00c27a" stroke-width="1"/>
-    <rect x="8" y="8" width="184" height="314" stroke="#00c27a" stroke-width="3" rx="1"/>
-    <circle cx="100" cy="165" r="3" fill="#00c27a"/>
-  </svg>
-
-  <div class="hero-inner">
-    <div class="hero-l">
-      <div class="h-eye">
-        <span class="h-eye-label">Raheil · UWaterloo</span>
-        <span class="badge"><span class="bdot"></span>In progress · Mar 2026</span>
-      </div>
-      <h1 class="h1 d">I found an <em>underserved segment.</em> Then I built the product.</h1>
-      <p class="h-sub">A data-driven case study on identifying supply-demand misalignment in KW's emerging padel market — and what I negotiated, built, and shipped in under 8 weeks with no budget.</p>
+<!-- KPI STRIP -->
+<div class="kpi-strip">
+  <div class="kpi-inner">
+    <div class="kpi-cell">
+      <div class="kn">~55%</div>
+      <div class="kl">Of daily court hours empty before intervention</div>
     </div>
-    <div class="hero-r">
-      <div class="h-kpis">
-        <div class="h-kpi">
-          <div class="h-kn">~55%</div>
-          <div class="h-kl">Of daily court hours sitting empty before intervention</div>
-        </div>
-        <div class="h-kpi">
-          <div class="h-kn">$25</div>
-          <div class="h-kl">Per student per 90 min session, rackets included</div>
-        </div>
-        <div class="h-kpi">
-          <div class="h-kn">&lt;8 wks</div>
-          <div class="h-kl">From first conversation to formal written partnership</div>
-        </div>
-        <div class="h-kpi">
-          <div class="h-kn">1st</div>
-          <div class="h-kl">Student ever given a keyholder role at this facility</div>
-        </div>
-      </div>
+    <div class="kpi-cell">
+      <div class="kn">$25</div>
+      <div class="kl">Per student per session, rackets included</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kn">&lt;8 wks</div>
+      <div class="kl">First conversation to formal written partnership</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kn">1st</div>
+      <div class="kl">Student ever given a keyholder role at this facility</div>
     </div>
   </div>
 </div>
@@ -643,7 +588,7 @@ footer{
       <div>
         <span class="s-num">02 The Data</span>
         <h2 class="s-title d">I scraped their booking data. The gap was <em>hiding in plain sight.</em></h2>
-        <p class="b">Rather than assume, I pulled booking data directly from Rookie and Ace's reservation system. The pattern was immediate: courts sat near-empty every weekday before 3:30pm — a multi-hour window of dead time on a fixed-cost asset.</p>
+        <p class="b">Rather than assume, I pulled booking data directly from Rookie and Ace's reservation system. The pattern was immediate: courts sat near-empty every weekday before 3:30pm: a multi-hour window of dead time on a fixed-cost asset.</p>
         <p class="b">I also interviewed Derek directly to understand the cost structure. Well-managed Canadian clubs typically run at 35–50% utilization. Rookie and Ace was below that benchmark, concentrated entirely in the evening.</p>
         <div class="callout">
           <div class="cl-n">~55%</div>
@@ -682,7 +627,7 @@ footer{
         <span class="s-num">03 Affordability Problem</span>
         <h2 class="s-title d">Padel is an <em>expensive sport.</em> That's half the problem.</h2>
         <p class="b">Even if courts were available during the day, students couldn't afford the market rate. The solution had to fix both sides: unlock the supply and lower the price point. One without the other doesn't work.</p>
-        <p class="b">The negotiated student rate — $25+HST including rackets — ended up cheaper than Rookie and Ace's own off-peak split rate, with equipment included. That's the structural unlock.</p>
+        <p class="b">The negotiated student rate ($25+HST including rackets) ended up cheaper than Rookie and Ace's own off-peak split rate, equipment included. That's the structural unlock.</p>
         <div class="callout">
           <div class="cl-n">$13</div>
           <div class="cl-l">Cheaper per session than the facility's own standard off-peak rate, with rackets included</div>
@@ -759,7 +704,7 @@ footer{
       <div>
         <span class="s-num">05 Early Traction</span>
         <h2 class="s-title d">Under 8 weeks in. <em>The signal is real.</em></h2>
-        <p class="b">This community is 1–2 months old. The numbers are early and presented honestly. What matters at this stage isn't scale. The story is whether the right things are moving in the right direction — and they are.</p>
+        <p class="b">This community is 1–2 months old. The numbers are early and presented honestly. What matters at this stage isn't scale. The story is whether the right things are moving in the right direction. And they are.</p>
         <div class="g2" style="margin-top:var(--sp3);">
           <div class="stat"><div class="sn">5–10</div><div class="sl">Active players in person</div><div class="ss">Month 1 of operations</div></div>
           <div class="stat"><div class="sn">↑</div><div class="sl">Group chat growing weekly</div><div class="ss">Primary coordination channel</div></div>
@@ -818,7 +763,7 @@ footer{
         <h2 class="s-title d">Canada is at the <em>bottom of the curve.</em> That's the window.</h2>
       </div>
       <div>
-        <p class="b">Every sport that goes global follows the same adoption arc. Spain and Italy are mature. The US is mid-curve. Canada is just starting. The window to build community infrastructure before the rush is open right now — and it won't stay open long.</p>
+        <p class="b">Every sport that goes global follows the same adoption arc. Spain and Italy are mature. The US is mid-curve. Canada is just starting. The window to build community infrastructure before the rush is open right now. That window won't stay open long.</p>
       </div>
     </div>
 
@@ -847,7 +792,7 @@ footer{
         <div class="card">
           <div class="c-eye">Network effect</div>
           <div class="c-head d">Format forces social growth</div>
-          <div class="c-body">Padel is always played in groups of 4. Every player needs 3 others. The sport's format makes organic growth the default — it's structurally viral by design.</div>
+          <div class="c-body">Padel is always played in groups of 4. Every player needs 3 others. The sport's format makes organic growth the default. Structurally viral by design.</div>
         </div>
         <div class="card card-t">
           <div class="c-eye">Revenue signal</div>
@@ -857,7 +802,7 @@ footer{
         <div class="card">
           <div class="c-eye">Market timing</div>
           <div class="c-head d">Canada is 2–3 years behind the US curve</div>
-          <div class="c-body">The US went from ~200 to 688 courts in under 3 years. Canada consistently follows with a short lag. The infrastructure window is open — and closing.</div>
+          <div class="c-body">The US went from ~200 to 688 courts in under 3 years. Canada consistently follows with a short lag. The infrastructure window is open. And closing.</div>
         </div>
       </div>
     </div>
@@ -872,11 +817,11 @@ footer{
       <div>
         <span class="s-num">07 Growth Pipeline</span>
         <h2 class="s-title d">How the community is <em>actually growing</em> right now.</h2>
-        <p class="b">No ads. No budget. Just word of mouth — and it's working. The pipeline is simple by design: bring people who've never played, let the sport convert them, watch the network compound. The funnel isn't a strategy. It's what's already happening.</p>
+        <p class="b">No ads. No budget. Just word of mouth. And it's working. The pipeline is simple by design: bring people who've never played, let the sport convert them, watch the network compound. The funnel isn't a strategy. It's what's already happening.</p>
         <div class="g2" style="margin-top:var(--sp4);">
           <div class="card card-k">
             <div class="c-eye">Why padel converts</div>
-            <div class="c-body">Easy to learn, immediately fun. Within one session most players are hooked. The sport does the selling — you just have to show up with the right people.</div>
+            <div class="c-body">Easy to learn, immediately fun. Within one session most players are hooked. The sport does the selling. Show up with the right people.</div>
           </div>
           <div class="card card-k">
             <div class="c-eye">The long-term business case</div>
@@ -899,7 +844,7 @@ footer{
               <div class="fn-eye">Layer 2</div>
               <div class="fn-ttl d">Friends of <em>friends</em></div>
             </div>
-            <div class="fn-body">Players who came once bring someone new the next time. No coordination required. The social nature of padel — always played in groups of 4 — makes organic growth the default.</div>
+            <div class="fn-body">Players who came once bring someone new the next time. No coordination required. The social nature of padel (always played in groups of 4) makes organic growth the default.</div>
           </div>
           <div class="fn-arr"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 2v10M3 8l5 5 5-5" stroke="#00c27a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <div class="fn-row fn-2">
@@ -938,7 +883,7 @@ footer{
       <div>
         <span class="s-num">08 What Exists Now</span>
         <h2 class="s-title d">Real change. <em>Eight weeks in.</em></h2>
-        <p class="b">None of this existed before January 2026. The structural pieces are already in place — built without a budget, a team, or anyone asking me to do it.</p>
+        <p class="b">None of this existed before January 2026. The structural pieces are already in place. Built without a budget, a team, or anyone asking me to do it.</p>
         <div class="quote">
           <div class="q-tx">"I think it would be great to see a U of W team competing amongst the other schools out there playing tournaments."</div>
           <div class="q-at">Derek, Owner · Rookie and Ace Padel, Kitchener ON · Feb 2026</div>
@@ -965,7 +910,7 @@ footer{
         <div class="card card-k">
           <div class="c-eye">Long-term Vision</div>
           <div class="c-head d">UW tournament team in progress. Community built to last.</div>
-          <div class="c-body">Club events in motion, university outreach underway. The goal is a self-sustaining padel community in KW, with a UW team competing regionally — endorsed by Derek in writing.</div>
+          <div class="c-body">Club events in motion, university outreach underway. The goal is a self-sustaining padel community in KW, with a UW team competing regionally. Endorsed by Derek in writing.</div>
         </div>
         <div class="card card-t">
           <div class="c-eye">Revenue Signal</div>
@@ -991,7 +936,7 @@ footer{
         <h2 class="s-title d">The method is the <em>same everywhere.</em></h2>
         <p class="b">Find the gap between what exists and what should exist. Diagnose it with data. Propose a solution that works for both sides. Take responsibility before you have the title to justify it.</p>
         <p class="b">That's product thinking: identifying a two-sided problem, building a solution that serves both sides simultaneously, and measuring it against real outcomes. I did it with a booking spreadsheet and a padel racket. The instinct scales.</p>
-        <p class="b">I can't see a broken system and leave it alone. And I don't rely on instinct to diagnose it — I pull the data first, because that's what earns the conversation. That's not something I decided to be. It's just what happens when I look at something long enough.</p>
+        <p class="b">I can't see a broken system and leave it alone. And I don't rely on instinct to diagnose it. I pull the data first, because that's what earns the conversation. That's not something I decided to be. It's just what happens when I look at something long enough.</p>
       </div>
       <div class="stk">
         <div class="card">
@@ -1002,7 +947,7 @@ footer{
         <div class="card">
           <div class="c-eye">Pattern 02</div>
           <div class="c-head d">I use data to find undervalued segments</div>
-          <div class="c-body">Students were an undervalued segment Derek hadn't priced or marketed toward. That's not just a padel insight — it's the same analytical instinct I applied at TD. The context changes. The method doesn't.</div>
+          <div class="c-body">Students were an undervalued segment Derek hadn't priced or marketed toward. That's not just a padel insight. It's the same analytical instinct I applied at TD. The context changes. The method doesn't.</div>
         </div>
         <div class="card">
           <div class="c-eye">Pattern 03</div>
@@ -1038,11 +983,10 @@ window.addEventListener('scroll',()=>{
   document.getElementById('progress').style.width=pct+'%';
 });
 
-/* — scroll reveal — */
+/* — trigger charts on scroll — */
 const io=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(!e.isIntersecting)return;
-    e.target.classList.add('vis');
     if(e.target.id==='data')   setTimeout(animBars,300);
     if(e.target.id==='whynow') setTimeout(()=>{drawCurve();drawNet();},200);
   });
